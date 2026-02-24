@@ -1,0 +1,724 @@
+/* CSS Variables */
+:root {
+    --primary: #221be7;
+    --primary-light: #392d7a;
+    --accent: #001df7;
+    --accent-light: #88b5f7;
+    --dark: #0f1a14;
+    --light: #f8f9fa;
+    --border: #d4e3d9;
+    --shadow: rgba(26, 77, 46, 0.08);
+    --danger: #dc3545;
+    --info: #0dcaf0;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9f5ec 100%);
+    color: var(--dark);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    padding: 2rem 0;
+    box-shadow: 0 4px 20px var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.btn-logout {
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Outfit', sans-serif;
+    white-space: nowrap;
+}
+
+.btn-logout:hover {
+    background: white;
+    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    border: 4px solid var(--accent);
+}
+
+.school-info {
+    flex: 1;
+    color: white;
+}
+
+.school-info h1 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    letter-spacing: -0.5px;
+}
+
+.school-info p {
+    font-size: 1rem;
+    opacity: 0.95;
+    font-weight: 300;
+}
+
+/* Container */
+.container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+/* Summary Section */
+.summary-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.summary-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px var(--shadow);
+}
+
+.summary-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+}
+
+.summary-info h3 {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.summary-number {
+    font-family: 'Crimson Pro', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+}
+
+/* Grade Tabs */
+.grade-tabs {
+    background: white;
+    border-radius: 12px;
+    padding: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 12px var(--shadow);
+    flex-wrap: wrap;
+}
+
+.grade-tab {
+    flex: 1;
+    min-width: 100px;
+    padding: 0.9rem 1.5rem;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #666;
+    transition: all 0.3s ease;
+    font-family: 'Outfit', sans-serif;
+}
+
+.grade-tab:hover {
+    background: #f8fcf9;
+    color: var(--primary);
+}
+
+.grade-tab.active {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(26, 77, 46, 0.3);
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 0.9rem 1.8rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Outfit', sans-serif;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    box-shadow: 0 4px 16px rgba(26, 77, 46, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(26, 77, 46, 0.4);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-secondary:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #bb2d3b;
+    transform: translateY(-2px);
+}
+
+.btn-info {
+    background: var(--info);
+    color: white;
+}
+
+.btn-info:hover {
+    background: #0bb5d6;
+    transform: translateY(-2px);
+}
+
+/* Grade Section */
+.grade-section {
+    margin-bottom: 2rem;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.grade-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+    border-radius: 12px 12px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.grade-header h2 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.8rem;
+}
+
+.student-count {
+    background: rgba(255,255,255,0.2);
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* Student Cards */
+.students-grid {
+    display: grid;
+    gap: 1rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 4px 20px var(--shadow);
+}
+
+.student-card {
+    background: linear-gradient(135deg, #f8fcf9 0%, white 100%);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.student-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 16px var(--shadow);
+    transform: translateX(4px);
+}
+
+.student-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.student-name {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.3rem;
+}
+
+.student-id {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.student-grade-badge {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.student-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.detail-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.detail-label {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.detail-value {
+    font-size: 1rem;
+    color: var(--dark);
+    font-weight: 500;
+}
+
+.student-footer {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.submitted-date {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.delete-btn {
+    background: var(--danger);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: #bb2d3b;
+    transform: scale(1.05);
+}
+
+/* Parent Info Section Styles */
+.parent-info-section {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.parent-info-section h4 {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    color: var(--primary);
+}
+
+.parent-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.parent-column {
+    padding: 0.75rem;
+    background: white;
+    border-radius: 6px;
+    border-left: 3px solid var(--primary);
+}
+
+.parent-column strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--primary);
+}
+
+.parent-column p {
+    margin: 0.25rem 0;
+    font-size: 0.85rem;
+    color: #555;
+    padding-left: 0.25rem;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px var(--shadow);
+    display: none;
+}
+
+.empty-state.show {
+    display: block;
+}
+
+.empty-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state h2 {
+    font-family: 'Crimson Pro', serif;
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state p {
+    color: #666;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+/* Mobile-Optimized Touch Targets */
+@media (hover: none) and (pointer: coarse) {
+    .grade-tab, .btn, .delete-btn {
+        min-height: 48px;
+    }
+    
+    input, select, textarea {
+        min-height: 48px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+}
+
+/* Tablet Responsive */
+@media (max-width: 992px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+    
+    .summary-section {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .btn-logout {
+        width: 100%;
+        order: 3;
+    }
+
+    .school-info h1 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+    
+    .school-info p {
+        font-size: 0.9rem;
+    }
+    
+    .logo {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .container {
+        padding: 0 1rem;
+        margin: 1.5rem auto;
+    }
+    
+    .summary-section {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .summary-card {
+        padding: 1.5rem;
+    }
+    
+    .summary-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+    }
+    
+    .summary-number {
+        font-size: 2rem;
+    }
+
+    .grade-tabs {
+        flex-direction: column;
+        padding: 0.3rem;
+    }
+
+    .grade-tab {
+        width: 100%;
+        padding: 0.8rem 1.2rem;
+        text-align: left;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        font-size: 0.95rem;
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .grade-header {
+        padding: 1.2rem 1.5rem;
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: flex-start;
+    }
+    
+    .grade-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .students-grid {
+        padding: 1rem;
+    }
+    
+    .student-card {
+        padding: 1.2rem;
+    }
+
+    .student-details {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .student-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .student-name {
+        font-size: 1.3rem;
+    }
+
+    .student-footer {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .parent-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .delete-btn {
+        width: 100%;
+    }
+    
+    .empty-state {
+        padding: 3rem 1.5rem;
+    }
+    
+    .empty-icon {
+        font-size: 4rem;
+    }
+    
+    .empty-state h2 {
+        font-size: 1.5rem;
+    }
+    
+    .empty-state p {
+        font-size: 1rem;
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    .school-info h1 {
+        font-size: 1.3rem;
+    }
+    
+    .summary-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .grade-header h2 {
+        font-size: 1.3rem;
+    }
+    
+    .student-name {
+        font-size: 1.2rem;
+    }
+    
+    .detail-value {
+        font-size: 0.95rem;
+        word-break: break-word;
+    }
+}
+
+/* Landscape Mobile Optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+    header {
+        padding: 1rem 0;
+    }
+    
+    .header-container {
+        flex-direction: row;
+        gap: 1rem;
+    }
+    
+    .logo {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+    
+    .school-info h1 {
+        font-size: 1.2rem;
+    }
+    
+    .school-info p {
+        font-size: 0.85rem;
+    }
+    
+    .summary-section {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* iOS Safari Specific Fixes */
+@supports (-webkit-touch-callout: none) {
+    input, select, textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+    }
+
+    .action-buttons,
+    .grade-tabs,
+    .delete-btn {
+        display: none !important;
+    }
+
+    .student-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}

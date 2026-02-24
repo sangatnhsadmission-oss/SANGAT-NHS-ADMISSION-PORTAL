@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sangat National High School - Enrollment Portal</title>
+    <link href="https://script.google.com/macros/s/AKfycbwvsvitgZqCrt81gphSS-yo9bUBv2WeHki1cRXfiEIo9vKIacia2OTvSlcjgBYKv0tKXg/exec" rel="stylesheet">
+    <link rel="stylesheet" href="portal.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo"><img src="logo.jpg" alt="DepEd Logo"></div>
+            <div class="school-info">
+                <h1>Sangat National High School</h1>
+                <p>Excellence in Education • Building Tomorrow's Leaders</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+        <div class="tabs-container">
+            <button class="tab active" onclick="switchTab('home')">Home</button>
+            <button class="tab" onclick="switchTab('enrollment')">Enrollment</button>
+            <button class="tab" onclick="switchTab('about')">About Us</button>
+            <button class="tab" onclick="switchTab('contact')">Contact</button>
+            <button class="tab" onclick="openAdminLogin()" style="background: linear-gradient(135deg, #f77f00 0%, #fcbf49 100%); color: white;">🔐 Admin Dashboard</button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Home Section -->
+        <div id="home" class="content-section active">
+            <div class="card">
+                <h2>Welcome to Sangat National High School</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 2rem;">
+                    We are committed to providing quality education that nurtures academic excellence, 
+                    character development, and lifelong learning. Our dedicated faculty and comprehensive 
+                    programs prepare students for success in higher education and beyond.
+                </p>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon">📚</div>
+                        <h3>Quality Education</h3>
+                        <p>Comprehensive curriculum aligned with DepEd standards and innovative teaching methods</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">👨‍🏫</div>
+                        <h3>Expert Faculty</h3>
+                        <p>Highly qualified and dedicated teachers committed to student success</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🏆</div>
+                        <h3>Student Achievement</h3>
+                        <p>Proven track record of academic excellence and holistic development</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🌟</div>
+                        <h3>Modern Facilities</h3>
+                        <p>Well-equipped classrooms, laboratories, and learning resources</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Latest Announcements</h2>
+                <div style="padding: 1.5rem; background: linear-gradient(135deg, #f8fcf9 0%, #fff 100%); border-radius: 10px; border-left: 4px solid var(--accent); margin-bottom: 1rem;">
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.2rem;">📢 Enrollment Now Open for S.Y. 2025-2026</h3>
+                    <p style="color: #666;">Enroll your child now for the upcoming school year. Visit the Enrollment tab to submit your application.</p>
+                </div>
+                <div style="padding: 1.5rem; background: linear-gradient(135deg, #f8fcf9 0%, #fff 100%); border-radius: 10px; border-left: 4px solid var(--primary); margin-bottom: 1rem;">
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.2rem;">🎓 Recognition Day - March 2026</h3>
+                    <p style="color: #666;">Join us in celebrating our students' achievements and academic excellence.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enrollment Section -->
+        <div id="enrollment" class="content-section">
+            <div class="card">
+                <h2>Student Enrollment Application</h2>
+                <p style="margin-bottom: 2rem; color: #666;">Please fill out the form below to apply for enrollment. All fields marked with <span style="color: var(--accent);">*</span> are required.</p>
+                
+                <form id="enrollmentForm" onsubmit="handleSubmit(event)">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.3rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem;">Personal Information</h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Last Name <span class="required">*</span></label>
+                            <input type="text" name="lastName" required pattern="[A-Za-zÑñ\s]+" title="Letters only" oninput="validateName(this)">
+                        </div>
+                        <div class="form-group">
+                            <label>First Name <span class="required">*</span></label>
+                            <input type="text" name="firstName" required pattern="[A-Za-zÑñ\s]+" title="Letters only" oninput="validateName(this)">
+                        </div>
+                        <div class="form-group">
+                            <label>Middle Name</label>
+                            <input type="text" name="middleName" pattern="[A-Za-zÑñ\s]+" title="Letters only" oninput="validateName(this)">
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Birth <span class="required">*</span></label>
+                            <input type="date" name="birthDate" id="birthDate" required onchange="calculateAge()">
+                        </div>
+                        <div class="form-group">
+                            <label>Age <span class="required">*</span></label>
+                            <input type="number" name="age" id="age" required readonly style="background: #f0f0f0;">
+                        </div>
+                        <div class="form-group">
+                            <label>Gender <span class="required">*</span></label>
+                            <select name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>PSA Birth Certificate No.</label>
+                            <input type="text" name="psaBirthCertNo" placeholder="Optional">
+                            <small style="color: #666; font-size: 0.85rem;">If available</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Extension Name</label>
+                            <input type="text" name="extensionName" placeholder="e.g., Jr., III, Sr. (if applicable)">
+                        </div>
+                        <div class="form-group">
+                            <label>Place of Birth <span class="required">*</span></label>
+                            <input type="text" name="placeOfBirth" required placeholder="Municipality/City">
+                        </div>
+                        <div class="form-group">
+                            <label>Religion <span class="required">*</span></label>
+                            <input type="text" name="religion" required placeholder="e.g., Catholic, Islam, INC">
+                        </div>
+                        <div class="form-group">
+                            <label>Mother Tongue <span class="required">*</span></label>
+                            <input type="text" name="motherTongue" required placeholder="e.g., Cebuano, Tagalog, English">
+                        </div>
+                    </div>
+                    
+                    <div class="form-grid" style="margin-top: 1.5rem;">
+                        <div class="form-group full-width">
+                            <label>Belonging to Indigenous Peoples (IP) Community? <span class="required">*</span></label>
+                            <select name="isIndigenous" id="isIndigenous" required onchange="toggleIPCommunity()">
+                                <option value="">Select</option>
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width" id="ipCommunityGroup" style="display: none;">
+                            <label>If Yes, please specify IP Community/Indigenous Cultural Community</label>
+                            <input type="text" name="ipCommunity" id="ipCommunity" placeholder="e.g., Badjao, Higaonon, etc.">
+                        </div>
+                    </div>
+                    
+                    <div class="form-grid" style="margin-top: 1.5rem;">
+                        <div class="form-group full-width">
+                            <label>Is your family a beneficiary of 4Ps (Pantawid Pamilyang Pilipino Program)? <span class="required">*</span></label>
+                            <select name="is4PsBeneficiary" id="is4PsBeneficiary" required onchange="toggle4Ps()">
+                                <option value="">Select</option>
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width" id="fourPsGroup" style="display: none;">
+                            <label>4Ps Household ID Number <span class="required">*</span></label>
+                            <input type="text" name="fourPsHouseholdId" id="fourPsHouseholdId" placeholder="Enter 4Ps Household ID Number">
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--primary); margin: 2rem 0 1.5rem; font-size: 1.3rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem;">Contact Information</h3>
+                    
+                    <h4 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem;">📍 Current Address</h4>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>House No. <span class="required">*</span></label>
+                            <input type="text" name="houseNo" required placeholder="House Number">
+                        </div>
+                        <div class="form-group">
+                            <label>Sitio/Street Name <span class="required">*</span></label>
+                            <input type="text" name="streetName" required placeholder="Street/Sitio Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Barangay <span class="required">*</span></label>
+                            <input type="text" name="barangay" required placeholder="Barangay">
+                        </div>
+                        <div class="form-group">
+                            <label>Municipality/City <span class="required">*</span></label>
+                            <input type="text" name="municipality" required placeholder="City/Municipality">
+                        </div>
+                        <div class="form-group">
+                            <label>Province <span class="required">*</span></label>
+                            <input type="text" name="province" required placeholder="Province">
+                        </div>
+                        <div class="form-group">
+                            <label>Country <span class="required">*</span></label>
+                            <input type="text" name="country" required value="Philippines">
+                        </div>
+                        <div class="form-group">
+                            <label>Zip Code</label>
+                            <input type="text" name="zipCode" placeholder="Zip Code">
+                        </div>
+                    </div>
+                    
+                    <h4 style="color: var(--primary); margin: 1.5rem 0 1rem; font-size: 1.1rem;">📍 Permanent Address</h4>
+                    <div class="form-group full-width">
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" name="sameAsCurrentAddress" id="sameAsCurrentAddress" onchange="togglePermanentAddress()" style="width: auto; margin: 0;">
+                            <span>Same as Current Address</span>
+                        </label>
+                    </div>
+                    
+                    <div id="permanentAddressFields">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>House No.</label>
+                                <input type="text" name="permanentHouseNo" id="permanentHouseNo" placeholder="House Number">
+                            </div>
+                            <div class="form-group">
+                                <label>Sitio/Street Name</label>
+                                <input type="text" name="permanentStreetName" id="permanentStreetName" placeholder="Street/Sitio Name">
+                            </div>
+                            <div class="form-group">
+                                <label>Barangay</label>
+                                <input type="text" name="permanentBarangay" id="permanentBarangay" placeholder="Barangay">
+                            </div>
+                            <div class="form-group">
+                                <label>Municipality/City</label>
+                                <input type="text" name="permanentMunicipality" id="permanentMunicipality" placeholder="City/Municipality">
+                            </div>
+                            <div class="form-group">
+                                <label>Province</label>
+                                <input type="text" name="permanentProvince" id="permanentProvince" placeholder="Province">
+                            </div>
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" name="permanentCountry" id="permanentCountry" value="Philippines">
+                            </div>
+                            <div class="form-group">
+                                <label>Zip Code</label>
+                                <input type="text" name="permanentZipCode" id="permanentZipCode" placeholder="Zip Code">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h4 style="color: var(--primary); margin: 1.5rem 0 1rem; font-size: 1.1rem;">📞 Contact Information</h4>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Student Contact Number <span class="required">*</span></label>
+                            <input type="tel" name="contactNumber" required placeholder="09XX-XXX-XXXX">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" name="email" placeholder="student@example.com">
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--primary); margin: 2rem 0 1.5rem; font-size: 1.3rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem;">Enrollment Details</h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Learner Reference Number (LRN) <span class="required">*</span></label>
+                            <input type="text" name="lrn" id="lrn" required maxlength="12" pattern="[0-9]{12}" placeholder="12-digit LRN" oninput="validateLRN(this)">
+                            <small style="color: #666; font-size: 0.85rem;">Must be exactly 12 digits</small>
+                        </div>
+                        <div class="form-group">
+                            <label>General Average <span class="required">*</span></label>
+                            <input type="number" name="generalAverage" id="generalAverage" required min="0" max="100" step="0.01" placeholder="e.g. 85.50">
+                            <small style="color: #666; font-size: 0.85rem;" id="averageHint">Enter your general average (0-100)</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Grade Level to Enroll <span class="required">*</span></label>
+                            <select name="gradeLevel" id="gradeLevel" required onchange="toggleTrackAndValidateAverage()">
+                                <option value="">Select Grade Level</option>
+                                <option value="7">Grade 7</option>
+                                <option value="8">Grade 8</option>
+                                <option value="9">Grade 9</option>
+                                <option value="10">Grade 10</option>
+                                <option value="11">Grade 11</option>
+                                <option value="12">Grade 12</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>School Year <span class="required">*</span></label>
+                            <select name="schoolYear" required>
+                                <option value="2026-2027">2026-2027</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Senior High School Track Selection (Hidden by default) -->
+                        <div id="trackSelection" style="display: none;">
+                            <div class="form-group">
+                                <label>Semester <span class="required">*</span></label>
+                                <select name="semester" id="semester">
+                                    <option value="">Select Semester</option>
+                                    <option value="1st">1st Semester</option>
+                                    <option value="2nd">2nd Semester</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Senior High School Track/Strand <span class="required">*</span></label>
+                                <select name="track" id="track">
+                                    <option value="">Select Track/Strand</option>
+                                    <option value="STEM">STEM (Science, Technology, Engineering, and Mathematics)</option>
+                                    <option value="ABM">ABM (Accountancy, Business and Management)</option>
+                                    <option value="HUMSS">HUMSS (Humanities and Social Sciences)</option>
+                                    <option value="ICT">ICT (Information and Communications Technology)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label>Last School Attended <span class="required">*</span></label>
+                            <input type="text" name="lastSchool" required>
+                        </div>
+                    </div>
+
+                    
+                    <h3 style="color: var(--primary); margin: 2rem 0 1.5rem; font-size: 1.3rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem;">Special Needs Education Program</h3>
+                    
+                    <div class="form-group full-width">
+                        <label>5. Is the Learner under the Special Needs Education Program? <span class="required">*</span></label>
+                        <select name="isSpecialNeeds" id="isSpecialNeeds" required onchange="toggleSpecialNeeds()">
+                            <option value="">Select</option>
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                        <small style="color: #666;">If Yes, check only 1, either from a1 or a2</small>
+                    </div>
+                    
+                    <div id="specialNeedsSection" style="display: none;">
+                        <!-- Diagnosis Section -->
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                            <h4 style="color: var(--primary); margin-bottom: 1rem;">a1. With Diagnosis from Licensed Medical Specialist:</h4>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="diagnosis" value="ADHD" style="width: auto; margin: 0;">
+                                    <span>Attention Deficit Hyperactivity Disorder</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="diagnosis" value="Autism Spectrum Disorder" style="width: auto; margin: 0;">
+                                    <span>Autism Spectrum Disorder</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="diagnosis" value="Cerebral Palsy" style="width: auto; margin: 0;">
+                                    <span>Cerebral Palsy</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="diagnosis" value="Emotional-Behavior Disorder" style="width: auto; margin: 0;">
+                                    <span>Emotional-Behavior Disorder</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="diagnosis" value="Hearing Impairment" style="width: auto; margin: 0;">
+                                    <span>Hearing Impairment</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="diagnosis" value="Intellectual Disability" style="width: auto; margin: 0;">
+                                    <span>Intellectual Disability</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="diagnosis" value="Learning Disability" style="width: auto; margin: 0;">
+                                    <span>Learning Disability</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="diagnosis" value="Multiple Disabilities" style="width: auto; margin: 0;">
+                                    <span>Multiple Disabilities</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="diagnosis" value="Orthopedic/Physical Handicap" style="width: auto; margin: 0;">
+                                    <span>Orthopedic/Physical Handicap</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="diagnosis" value="Speech/Language Disorder" style="width: auto; margin: 0;">
+                                    <span>Speech/Language Disorder</span>
+                                </label>
+                            </div>
+                            
+                            <div style="margin-top: 1rem;">
+                                <h5 style="color: var(--primary); margin-bottom: 0.5rem;">Special Health Problem/Chronic Disease:</h5>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem;">
+                                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                        <input type="checkbox" name="diagnosis" value="Cancer" style="width: auto; margin: 0;">
+                                        <span>Cancer</span>
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                        <input type="checkbox" name="diagnosis" value="Non-Cancer" style="width: auto; margin: 0;">
+                                        <span>Non-Cancer</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top: 1rem;">
+                                <h5 style="color: var(--primary); margin-bottom: 0.5rem;">Visual Impairment:</h5>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem;">
+                                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                        <input type="checkbox" name="diagnosis" value="Blind" style="width: auto; margin: 0;">
+                                        <span>Blind</span>
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                        <input type="checkbox" name="diagnosis" value="Low Vision" style="width: auto; margin: 0;">
+                                        <span>Low Vision</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Manifestations Section -->
+                        <div style="background: #fff3e0; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                            <h4 style="color: var(--primary); margin-bottom: 1rem;">a2. With Manifestations:</h4>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="manifestations" value="Difficulty in Applying Knowledge" style="width: auto; margin: 0;">
+                                    <span>Difficulty in Applying Knowledge</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="manifestations" value="Difficulty in Communicating" style="width: auto; margin: 0;">
+                                    <span>Difficulty in Communicating</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="manifestations" value="Difficulty in Displaying Interpersonal Behavior" style="width: auto; margin: 0;">
+                                    <span>Difficulty in Displaying Interpersonal Behavior (Emotional and Behavioral)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="manifestations" value="Difficulty in Hearing" style="width: auto; margin: 0;">
+                                    <span>Difficulty in Hearing</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="manifestations" value="Difficulty in Mobility" style="width: auto; margin: 0;">
+                                    <span>Difficulty in Mobility (Walking, Climbing and Grasping)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="manifestations" value="Difficulty in Performing Adaptive Skills" style="width: auto; margin: 0;">
+                                    <span>Difficulty in Performing Adaptive Skills (Self-Care)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="manifestations" value="Difficulty in Remembering" style="width: auto; margin: 0;">
+                                    <span>Difficulty in Remembering, Concentrating, Paying Attention and Understanding</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" name="manifestations" value="Difficulty in Seeing" style="width: auto; margin: 0;">
+                                    <span>Difficulty in Seeing</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- PWD ID -->
+                        <div class="form-group full-width">
+                            <label>b. Does the Learner have a PWD ID? <span class="required">*</span></label>
+                            <select name="hasPWDID" id="hasPWDID">
+                                <option value="">Select</option>
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <h3 style="color: var(--primary); margin: 2rem 0 1.5rem; font-size: 1.3rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem;">6. For Returning Learner (Balik-Aral) and those who will Transfer/Move In</h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Last Grade Level Completed</label>
+                            <select name="lastGradeCompleted">
+                                <option value="">Select (if applicable)</option>
+                                <option value="Grade 6">Grade 6</option>
+                                <option value="Grade 7">Grade 7</option>
+                                <option value="Grade 8">Grade 8</option>
+                                <option value="Grade 9">Grade 9</option>
+                                <option value="Grade 10">Grade 10</option>
+                                <option value="Grade 11">Grade 11</option>
+                                <option value="Grade 12">Grade 12</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Last School Year Completed</label>
+                            <input type="text" name="lastSchoolYearCompleted" placeholder="e.g., 2024-2025">
+                        </div>
+                        <div class="form-group">
+                            <label>Last School Attended</label>
+                            <input type="text" name="lastSchoolAttended" placeholder="Name of previous school">
+                        </div>
+                        <div class="form-group">
+                            <label>School ID</label>
+                            <input type="text" name="previousSchoolID" placeholder="School ID from previous school">
+                        </div>
+                    </div>
+
+<h3 style="color: var(--primary); margin: 2rem 0 1.5rem; font-size: 1.3rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem;">Parent/Guardian Information</h3>
+                    
+                    <!-- Father Information (Required) -->
+                    <div style="background: #e8f4fd; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                        <h4 style="color: var(--primary); margin-bottom: 1rem;">👨 Father's Information</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Father's Full Name <span class="required">*</span></label>
+                                <input type="text" name="fatherName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Father's Contact Number <span class="required">*</span></label>
+                                <input type="tel" name="fatherContact" required placeholder="09XX-XXX-XXXX">
+                            </div>
+                            <div class="form-group">
+                                <label>Father's Email</label>
+                                <input type="email" name="fatherEmail" placeholder="father@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Father's Occupation</label>
+                                <input type="text" name="fatherOccupation">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mother Information (Required) -->
+                    <div style="background: #fef0f5; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                        <h4 style="color: var(--primary); margin-bottom: 1rem;">👩 Mother's Information</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Mother's Full Name <span class="required">*</span></label>
+                                <input type="text" name="motherName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Mother's Contact Number <span class="required">*</span></label>
+                                <input type="tel" name="motherContact" required placeholder="09XX-XXX-XXXX">
+                            </div>
+                            <div class="form-group">
+                                <label>Mother's Email</label>
+                                <input type="email" name="motherEmail" placeholder="mother@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Mother's Occupation</label>
+                                <input type="text" name="motherOccupation">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Guardian Information (Optional) -->
+                    <div style="background: #f5f5f5; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                        <h4 style="color: var(--primary); margin-bottom: 0.5rem;">👤 Guardian Information (Optional)</h4>
+                        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">Only fill this if someone other than parents will attend the interview</p>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Guardian's Full Name</label>
+                                <input type="text" name="guardianName" placeholder="Leave blank if not applicable">
+                            </div>
+                            <div class="form-group">
+                                <label>Guardian's Contact Number</label>
+                                <input type="tel" name="guardianContact" placeholder="09XX-XXX-XXXX">
+                            </div>
+                            <div class="form-group">
+                                <label>Guardian's Email</label>
+                                <input type="email" name="guardianEmail" placeholder="guardian@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Relationship to Student</label>
+                                <input type="text" name="guardianRelationship" placeholder="e.g., Aunt, Uncle, Grandparent">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: flex-end;">
+                        <button type="button" class="btn btn-secondary" onclick="document.getElementById('enrollmentForm').reset()">Clear Form</button>
+                        <button type="submit" class="btn btn-primary">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div id="about" class="content-section">
+            <div class="card">
+                <h2>About Sangat National High School</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 2rem;">
+                    Sangat National High School is a leading educational institution dedicated to providing 
+                    quality secondary education. Established with the vision of nurturing well-rounded individuals, 
+                    we combine academic excellence with character formation and skills development.
+                </p>
+
+                <h3 style="color: var(--primary); margin: 2rem 0 1rem; font-size: 1.4rem;">Our Mission</h3>
+                <p style="line-height: 1.8; color: #555; margin-bottom: 2rem;">
+                    To provide quality, equitable, culture-based, and complete basic education that empowers 
+                    every learner to become productive and responsible citizens.
+                </p>
+
+                <h3 style="color: var(--primary); margin: 2rem 0 1rem; font-size: 1.4rem;">Our Vision</h3>
+                <p style="line-height: 1.8; color: #555; margin-bottom: 2rem;">
+                    We dream of Filipinos who passionately love their country and whose values and competencies 
+                    enable them to realize their full potential and contribute meaningfully to building the nation.
+                </p>
+
+                <h3 style="color: var(--primary); margin: 2rem 0 1rem; font-size: 1.4rem;">Core Values</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon">💡</div>
+                        <h3>Excellence</h3>
+                        <p>Striving for the highest standards in all endeavors</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🤝</div>
+                        <h3>Integrity</h3>
+                        <p>Upholding honesty and strong moral principles</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">❤️</div>
+                        <h3>Service</h3>
+                        <p>Commitment to community and nation-building</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🌱</div>
+                        <h3>Innovation</h3>
+                        <p>Embracing creativity and continuous improvement</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Academic Programs</h2>
+                <div style="display: grid; gap: 1.5rem;">
+                    <div style="padding: 1.5rem; background: linear-gradient(135deg, #f8fcf9 0%, #fff 100%); border-radius: 10px; border-left: 4px solid var(--primary);">
+                        <h3 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.2rem;">Junior High School (Grades 7-10)</h3>
+                        <p style="color: #666;">Comprehensive curriculum covering core subjects and exploratory courses preparing students for senior high school.</p>
+                    </div>
+                    <div style="padding: 1.5rem; background: linear-gradient(135deg, #f8fcf9 0%, #fff 100%); border-radius: 10px; border-left: 4px solid var(--accent);">
+                        <h3 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.2rem;">Senior High School (Grades 11-12)</h3>
+                        <p style="color: #666;">Specialized tracks including Academic, Technical-Vocational-Livelihood, Sports, and Arts & Design strands.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact" class="content-section">
+            <div class="card">
+                <h2>Contact Us</h2>
+                <p style="margin-bottom: 2rem; color: #666;">We'd love to hear from you. Get in touch with us for any inquiries or concerns.</p>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <h3>Address</h3>
+                        <p>Sangat, Municipality<br>Province, Philippines</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <h3>Phone</h3>
+                        <p>(032) 488-8223<br>0927-582-8286</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <h3>Email</h3>
+                        <p><a href="" class="__cf_email__" data-cfemail="f88b99969f998c96908b999c95918b8b919796b89f95999194d69b9795">sangatnhsadmission@gmail.com</a><br><a href="" class="__cf_email__" data-cfemail="bae9dbd4dddbced4dbced3d5d4dbd6d2d3ddd2c9d9d2d5d5d6faddd7dbd3d694d9d5d7"></a></p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🕐</div>
+                        <h3>Office Hours</h3>
+                        <p>Monday - Friday<br>8:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem;">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.3rem;">Send us a Message</h3>
+                    <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Your Name <span class="required">*</span></label>
+                                <input type="text" name="contactName" required pattern="[A-Za-zÑñ\s]+" title="Letters only" oninput="validateName(this)">
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address <span class="required">*</span></label>
+                                <input type="email" name="contactEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Contact Number</label>
+                                <input type="tel" name="contactPhone" placeholder="09XX-XXX-XXXX">
+                            </div>
+                            <div class="form-group">
+                                <label>Subject <span class="required">*</span></label>
+                                <input type="text" name="contactSubject" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Message <span class="required">*</span></label>
+                                <textarea name="contactMessage" required rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1.5rem;">
+                            <button type="submit" class="btn btn-primary" id="contactSubmitBtn">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sangat National High School</h3>
+                <p>Excellence in Education</p>
+                <p>Building Tomorrow's Leaders</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#" onclick="switchTab('home'); return false;">Home</a>
+                <a href="#" onclick="switchTab('enrollment'); return false;">Enrollment</a>
+                <a href="#" onclick="switchTab('about'); return false;">About Us</a>
+                <a href="#" onclick="switchTab('contact'); return false;">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p>📍 Sangat Sanfernando,  cebu, Philippines</p>
+                <p>📞 (032) 488-8223</p>
+                <p>✉️ <a href="sangatnhsadmission@gmail.com" class="__cf_email__" data-cfemail="cfbcaea1a8aebba1a7bcaeaba2a6bcbca6a0a18fa8a2aea6a3e1aca0a2">sangatnhsadmission@gmail.com</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p>Stay connected on social media</p>
+                <p>Facebook | Sangat National HIGH School</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sangat National High School. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Admin Login Popup Modal -->
+    <div id="adminLoginModal" class="admin-modal">
+        <div class="admin-modal-content">
+            <span class="admin-close" onclick="closeAdminLogin()">&times;</span>
+            <div class="admin-login-header">
+                <div class="admin-login-logo"><img src="LOGO.JPG" alt="logo" width="130" height="130"></div>
+                <h2>Admin Login</h2>
+                <p>Enter credentials to access dashboard</p>
+            </div>
+            
+            <form id="adminLoginForm" onsubmit="handleAdminLoginPopup(event)">
+                <div class="admin-form-group">
+                    <label>👤 Username</label>
+                    <input type="text" id="popupUsername" required placeholder="Enter username">
+                </div>
+                
+                <div class="admin-form-group">
+                    <label>🔒 Password</label>
+                    <input type="password" id="popupPassword" required placeholder="Enter password">
+                    <button type="button" class="admin-toggle-password" onclick="togglePopupPassword()">👁️</button>
+                </div>
+                
+                <div id="popupLoginError" class="admin-login-error"></div>
+                <button type="submit" class="admin-login-btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="portal.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Sangat National High School</title>
+    <link href="https://script.google.com/macros/s/AKfycbwvsvitgZqCrt81gphSS-yo9bUBv2WeHki1cRXfiEIo9vKIacia2OTvSlcjgBYKv0tKXg/exec" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <button class="btn-logout" onclick="logoutAdmin()">🚪 Logout</button>
+            <div class="logo"><img src="logo.jpg" alt="DepEd Logo" style="width: 100%; height: 100%; object-fit: cover;"></div>
+            <div class="school-info">
+                <h1>Enrollment Management Dashboard</h1>
+                <p>Sangat National High School - Admin Portal</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Summary Cards -->
+        <div class="summary-section">
+            <div class="summary-card">
+                <div class="summary-icon">👥</div>
+                <div class="summary-info">
+                    <h3>Total Enrollments</h3>
+                    <p class="summary-number" id="totalEnrollments">0</p>
+                </div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-icon">📚</div>
+                <div class="summary-info">
+                    <h3>Junior High School</h3>
+                    <p class="summary-number" id="juniorHighTotal">0</p>
+                </div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-icon">🎓</div>
+                <div class="summary-info">
+                    <h3>Senior High School</h3>
+                    <p class="summary-number" id="seniorHighTotal">0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grade Level Tabs -->
+        <div class="grade-tabs">
+            <button class="grade-tab active" onclick="filterByGrade('all')">All Grades</button>
+            <button class="grade-tab" onclick="filterByGrade('7')">Grade 7</button>
+            <button class="grade-tab" onclick="filterByGrade('8')">Grade 8</button>
+            <button class="grade-tab" onclick="filterByGrade('9')">Grade 9</button>
+            <button class="grade-tab" onclick="filterByGrade('10')">Grade 10</button>
+            <button class="grade-tab" onclick="filterByGrade('11')">Grade 11</button>
+            <button class="grade-tab" onclick="filterByGrade('12')">Grade 12</button>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="exportToCSV()">📥 Export to CSV</button>
+            <button class="btn btn-secondary" onclick="printData()">🖨️ Print</button>
+            <button class="btn btn-danger" onclick="clearAllData()">🗑️ Clear All Data</button>
+            <button class="btn btn-info" onclick="window.location.href=' Sangat Portal.html'">🏠 Back to Home</button>
+        </div>
+
+        <!-- Enrollments Display -->
+        <div id="enrollmentsContainer"></div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state">
+            <div class="empty-icon">📋</div>
+            <h2>No Enrollments Yet</h2>
+            <p>There are no enrollment applications submitted yet. Applications will appear here once students submit their forms.</p>
+            <button class="btn btn-primary" onclick="window.location.href='portal.html'">Go to Enrollment Page</button>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
